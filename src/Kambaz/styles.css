@@ -51,6 +51,11 @@ body * {
     }
 }
 
+.wd-quiz-modules {
+    padding-left: 35px;
+    font-size: 15px;
+}
+
 .wd-assignment-link {
     color: #000;
     text-decoration: none !important;
