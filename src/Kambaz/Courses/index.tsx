@@ -9,7 +9,7 @@ import PeopleTable from "./People/Table";
 import { findUsersForCourse } from "./client";
 import { useEffect, useState } from "react";
 import Quizzes from "./Quizzes";
-import QuizDetails from "./Quizzes/details";
+import QuizDetails from "./Quizzes/quizDetails";
 
 export default function Courses({ courses }: { courses: any[]; }) {
   const { pathname } = useLocation();

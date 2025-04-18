@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import * as quizClient from "./client";
-import { setQuizzes } from "./reducer";
+import { addQuiz, setQuizzes } from "./reducer";
 import { useEffect } from "react";
 import { IoRocketOutline } from "react-icons/io5";
 import QuizControls from "./quizControls";
@@ -23,16 +23,34 @@ export default function Quizzes() {
         dispatch(setQuizzes(quizzes));
     };
 
-    const addQuiz = () => {
-        // const tempQuiz = {
-        //     _id: "Q" + Math.floor(Math.random() * (999 - 100 + 1) + 100),
-        //     title: "New Quiz",
-        //     course: cid,
-        //     dueDt: "",
-        //     dueTime: "11:59pm",
-        //     points: 100,
-        //     qns: 15
-        // };
+    const createQuiz = async () => {
+        const newQuiz = {
+            _id: "Q" + Math.floor(Math.random() * (999 - 100 + 1) + 100),
+            title: "New Quiz",
+            course: cid,
+            type: "Graded Quiz",
+            assignmentGroup: "Quizzes",
+            shuffleAns: true,
+            timeLimit: 20,
+            multipleAttempts: false,
+            noOfAttempts: 1,
+            showCorrectAns: "Immediately",
+            accessCode: "",
+            oneQn: true,
+            webcam: false,
+            lockQns: false,
+            dueDt: "",
+            dueTime: "",
+            availableDt: "",
+            availableTime: "",
+            untilDt: "",
+            untilTime: "",
+            points: 0,
+            qns: 0,
+            published: false
+        };
+        await quizClient.addQuiz(newQuiz);
+        dispatch(addQuiz(newQuiz))
     }
 
     useEffect(() => {
@@ -53,7 +71,7 @@ export default function Quizzes() {
                 {currentUser.role === "FACULTY" &&
                     <Container>
                         <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-quiz"
-                            onClick={() => addQuiz()}>
+                            onClick={() => createQuiz()}>
                             <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                             Quiz
                         </Button>
