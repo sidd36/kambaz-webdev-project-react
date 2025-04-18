@@ -85,3 +85,8 @@ body * {
     background-color: initial !important;
 }
 
+.quiz-details {
+    border: 2px;
+    border-style: dotted;
+    padding: 15px 15px 0px 15px
+}
