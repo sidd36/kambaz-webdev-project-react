@@ -14,6 +14,7 @@ import Questions from "./Quizzes/Questions";
 import QuestionEditor from "./Quizzes/Questions/editor";
 import QuizEditor from "./Quizzes/quizEditor";
 import QuizPreview from "./Quizzes/quizPreview";
+import QuizAnswers from "./Quizzes/QuizAnswers";
 
 export default function Courses({ courses }: { courses: any[]; }) {
   const { pathname } = useLocation();
@@ -49,6 +50,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
             <Route path="Quizzes/:qid/edit" element={<QuizEditor />} />
             <Route path="Quizzes/:qid/preview" element={<QuizPreview />} />
             <Route path="Quizzes/:quiz_id/Questions" element={<Questions />} />
+            <Route path="Quizzes/:quiz_id/QuestionsAnswers" element={<QuizAnswers />} />
             <Route path="Quizzes/:quiz_id/QuestionEditor/:question_id" element={<QuestionEditor />} />
           </Routes>
         </div></div>

@@ -80,7 +80,7 @@ export default function Questions() {
                   {currentUser.role === "FACULTY" &&
                     <FaTrash className="text-danger me-2 mt-2 float-end" data-bs-toggle="modal" data-bs-target={`#wd-delete-assgn-dialog-${question._id}`} />}
                   {currentUser.role === "FACULTY" &&
-                    <a href={`#/Kambaz/Quizes/${quiz_id}/Assignments/${question._id}`}
+                    <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz_id}`}
                     className="wd-question-link" ><FaPencil className="text-danger me-2 mt-2 float-end" data-bs-toggle="modal" data-bs-target={`#wd-delete-assgn-dialog-${question._id}`} />
                     </a>}
                     <ConfirmationPopup title={question.title} id={question._id}></ConfirmationPopup>
