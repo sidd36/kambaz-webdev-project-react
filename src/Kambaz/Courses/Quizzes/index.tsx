@@ -11,6 +11,7 @@ import { addQuiz, setQuizzes } from "./reducer";
 import { useEffect } from "react";
 import { IoRocketOutline } from "react-icons/io5";
 import QuizControls from "./quizControls";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Quizzes() {
     const { cid } = useParams();
@@ -25,7 +26,7 @@ export default function Quizzes() {
 
     const createQuiz = async () => {
         const newQuiz = {
-            _id: "Q" + Math.floor(Math.random() * (999 - 100 + 1) + 100),
+            _id: uuidv4(),
             title: "New Quiz",
             course: cid,
             type: "Graded Quiz",

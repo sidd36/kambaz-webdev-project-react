@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaPencil } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 export default function QuizDetails() {
     const { qid } = useParams();
@@ -16,9 +16,12 @@ export default function QuizDetails() {
     return (
         <Container id="wd-quizzes-details">
             <div className="d-flex justify-content-center gap-2">
-                <Button className="btn-secondary">Preview</Button>
                 <Button className="btn-secondary">
-                    <FaPencil className="text-secondary me-2" />Edit</Button>
+                    <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/preview` }} className="text-dark text-decoration-none">
+                        Preview</Link></Button>
+                <Button className="btn-secondary">
+                    <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/edit` }} className="text-dark text-decoration-none">
+                        <FaPencil className="text-secondary me-2" />Edit</Link></Button>
             </div>
             <br />
             <div className="quiz-details">

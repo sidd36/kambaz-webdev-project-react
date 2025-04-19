@@ -18,7 +18,7 @@ export default function QuizControls({ quiz }: { quiz: any }) {
     }
 
     const updatePublished = async (publishedNew: boolean) => {
-        const updatedQuiz = {...quiz, published: publishedNew};
+        const updatedQuiz = { ...quiz, published: publishedNew };
         await quizClient.updateQuiz(updatedQuiz);
         dispatch(updateQuiz(updatedQuiz));
     }
@@ -35,15 +35,15 @@ export default function QuizControls({ quiz }: { quiz: any }) {
 
                 <Dropdown.Menu>
                     <Dropdown.Item>
-                        <Link to={{pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}`}}><FaPencil className="text-primary me-3" />Edit</Link>
+                        <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}` }} className="text-dark text-decoration-none"><FaPencil className="text-primary me-3" />Edit</Link>
                     </Dropdown.Item>
                     <Dropdown.Item data-bs-toggle="modal" data-bs-target={`#wd-delete-quiz-dialog-${quiz._id}`}>
                         <FaTrash className="text-danger me-3" />Delete
                     </Dropdown.Item>
-                    {!quiz.published && <Dropdown.Item onClick={(e) => {e.preventDefault(); updatePublished(true);}}>
+                    {!quiz.published && <Dropdown.Item onClick={(e) => { e.preventDefault(); updatePublished(true); }}>
                         <span className="me-2"><GreenCheckmark /></span>Publish
                     </Dropdown.Item>}
-                    {quiz.published && <Dropdown.Item onClick={(e) => {e.preventDefault(); updatePublished(false);}}>
+                    {quiz.published && <Dropdown.Item onClick={(e) => { e.preventDefault(); updatePublished(false); }}>
                         <MdDoNotDisturbAlt className="me-3" />Unpublish
                     </Dropdown.Item>}
                 </Dropdown.Menu>
