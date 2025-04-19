@@ -74,7 +74,10 @@ export default function Quizzes() {
             {
               quizzes.map((quiz: any) => (
                 <ListGroup.Item className="wd-assignment-list-item p-3 ps-1">
+                  {currentUser.role === "FACULTY" && <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/Questions`}
+                    className="wd-assignment-link" >
                   <IoRocketOutline style={{ color: "green" }} />
+                  </a>}
                   {currentUser.role === "FACULTY" && <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}`}
                     className="wd-assignment-link" >
                     {quiz.title} <br />
