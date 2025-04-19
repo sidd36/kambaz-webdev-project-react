@@ -93,7 +93,7 @@ export default function Quizzes() {
                                             className="wd-assignment-link" >
                                             <IoRocketOutline style={{ color: "green" }} className="mt-1"  />
                                         </a>}
-                                        {currentUser.role === "FACULTY" && <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}`}
+                                        {currentUser.role === "FACULTY" && <a href={`#/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/QuestionsAnswers`}
                                             className="wd-assignment-link" >
                                             {quiz.title} <br />
                                         </a>}

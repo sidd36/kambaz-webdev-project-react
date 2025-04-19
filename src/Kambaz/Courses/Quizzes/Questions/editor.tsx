@@ -2,7 +2,7 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addQuestion, setTempQuestion, updateQuestion } from "./reducer";
 import * as questionClient from "./client";
 import * as quizClient from "../client";
@@ -15,8 +15,8 @@ export default function QuestionEditor() {
     const { questions, tempQuestion } = useSelector((state: any) => state.questionsReducer);
     const question = questions.filter((ques: any) => ques._id === question_id)
     console.log(question)
-    let [edit_question, setQuestion] = useState<any>(question.length === 0 ? {multiple_choices: [], answer_blanks: []} : question[0]);
-    
+    let [edit_question, setQuestion] = useState<any>(question.length === 0 ? {multiple_choices: [], answer_blanks: [], question: ""} : question[0]);
+
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate()
     useEffect(() => {
@@ -108,6 +108,7 @@ export default function QuestionEditor() {
         const updatedPossibleAnswers = edit_question.answer_blanks.filter((_: any, i: number) => i !== index);
         setQuestion({ ...edit_question, answer_blanks: updatedPossibleAnswers });
       };
+      const editorRef = useRef(null);
 
   return (
     <div className="container mt-4">
@@ -151,7 +152,9 @@ export default function QuestionEditor() {
         <Form.Label><h5>Question:</h5></Form.Label>
         <Editor
           apiKey={import.meta.env.VITE_REACT_APP_TINYMCE_API_KEY}
-          initialValue={edit_question.question}
+          onInit={(_evt: any, editor: any) => editorRef.current = editor}
+          onEditorChange={(newValue: any, editor: any) => setQuestion({ ...edit_question, question: newValue })}
+          initialValue = {edit_question.question}
           init={{
             height: 200,
             menubar: false,
@@ -161,7 +164,6 @@ export default function QuestionEditor() {
                alignleft aligncenter alignright alignjustify | \
                bullist numlist outdent indent | removeformat | preview",
           }}
-          onEditorChange={(content: any) => setTempQuestion({ ...edit_question, question: content })}
         />
       </Form.Group>
 
