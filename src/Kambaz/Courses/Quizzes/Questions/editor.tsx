@@ -154,11 +154,13 @@ export default function QuestionEditor() {
           apiKey={import.meta.env.VITE_REACT_APP_TINYMCE_API_KEY}
           onInit={(_evt: any, editor: any) => editorRef.current = editor}
           onEditorChange={(newValue: any, editor: any) => setQuestion({ ...edit_question, question: newValue })}
-          initialValue = {edit_question.question}
+          initialValue={edit_question.question?.replace(/dir="rtl"/g, '')}
           init={{
             height: 200,
             menubar: false,
             plugins: "lists link image preview",
+            content_style: "body { direction: ltr !important; text-align: left !important; }",
+            directionality: 'ltr',
             toolbar:
               "undo redo | formatselect | bold italic underline | \
                alignleft aligncenter alignright alignjustify | \

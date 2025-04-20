@@ -25,7 +25,7 @@ export default function QuizControls({ quiz }: { quiz: any }) {
 
     return (
         <Container>
-            <Dropdown className="position-absolute end-0 top-0 me-2 mt-2" align="end">
+            <Dropdown className="position-absolute end-0 top-0 me-2 mt-2" style={{right: "1em"}}>
                 <Dropdown.Toggle
                     as={IoEllipsisVertical}
                     bsPrefix="p-0 border-0 bg-transparent"

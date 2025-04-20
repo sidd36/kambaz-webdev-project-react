@@ -90,3 +90,11 @@ body * {
     border-style: dotted;
     padding: 15px 15px 0px 15px
 }
+
+.dropdown-menu {
+    right: 1em;
+}
+
+.tox-edit-area iframe {
+    direction: ltr !important;
+}

@@ -12,12 +12,12 @@ export default function QuizDetails() {
 
     useEffect(() => {
         setQuiz(quizzes.find((q: any) => q._id === qid));
-    }, [qid])
+    }, [quizzes])
     return (
         <Container id="wd-quizzes-details">
             <div className="d-flex justify-content-center gap-2">
                 <Button className="btn-secondary">
-                    <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/preview` }} className="text-dark text-decoration-none">
+                    <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/QuestionsAnswers` }} className="text-dark text-decoration-none">
                         Preview</Link></Button>
                 <Button className="btn-secondary">
                     <Link to={{ pathname: `/Kambaz/Courses/${cid}/Quizzes/${quiz._id}/edit` }} className="text-dark text-decoration-none">
@@ -75,6 +75,18 @@ export default function QuizDetails() {
                 <Row className="mb-2">
                     <Col xs={6} className="text-end"><b>Lock Questions After Answering</b></Col>
                     <Col xs={6}>{quiz.lockQns ? "Yes" : "No"}</Col>
+                </Row>
+                <br/>
+                <Row>
+                    <Col xs={4}>Due</Col>
+                    <Col xs={4}>Available from</Col>
+                    <Col xs={4}>Until</Col>
+                </Row>
+                <hr />
+                <Row>
+                    <Col xs={4}>{quiz.dueDt} at {quiz.dueTime}</Col>
+                    <Col xs={4}>{quiz.availableDt} at {quiz.availableTime}</Col>
+                    <Col xs={4}>{quiz.untilDt} at {quiz.untilTime}</Col>
                 </Row>
             </div>
         </Container>

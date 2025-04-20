@@ -16,9 +16,10 @@ const quizzesSlice = createSlice({
 
         updateQuiz: (state, action) => {
             state.quizzes = state.quizzes.map((q: any) => {
-                q._id === action.payload._id ? action.payload : q
+                return q._id === action.payload._id ? action.payload : q
             }) as any;
         },
+
         addQuiz: (state, action) => {
             state.quizzes = [...state.quizzes, action.payload] as any;
         }
