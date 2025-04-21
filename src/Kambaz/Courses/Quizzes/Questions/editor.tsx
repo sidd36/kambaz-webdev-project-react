@@ -153,7 +153,7 @@ export default function QuestionEditor() {
         <Editor
           apiKey={import.meta.env.VITE_REACT_APP_TINYMCE_API_KEY}
           onInit={(_evt: any, editor: any) => editorRef.current = editor}
-          onEditorChange={(newValue: any, editor: any) => setQuestion({ ...edit_question, question: newValue })}
+          onEditorChange={(newValue: any) => setQuestion({ ...edit_question, question: newValue })}
           initialValue={edit_question.question?.replace(/dir="rtl"/g, '')}
           init={{
             height: 200,

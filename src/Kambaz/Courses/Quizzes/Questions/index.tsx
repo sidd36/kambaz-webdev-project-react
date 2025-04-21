@@ -1,7 +1,7 @@
 import { Button, ListGroup } from "react-bootstrap";
 import { BsGripVertical } from "react-icons/bs";
-import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6";
-import LessonControlButtons from "../../Modules/LessonControlButtons";
+import { FaPlus, FaTrash } from "react-icons/fa6";
+// import LessonControlButtons from "../../Modules/LessonControlButtons";
 import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteQuestion, setQuestions, setTempQuestion } from "./reducer";
