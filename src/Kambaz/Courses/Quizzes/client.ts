@@ -35,3 +35,17 @@ export const createQuestionsForQuiz = async (quizId: string, question: any) => {
     );
     return response.data;
 };
+
+export const saveQuizResponse = async (quiz_response: any) => {
+    const response = await axiosWithCredentials.post(
+        `${QUIZZES_API}/${quiz_response.quiz_id}/responses`,
+        quiz_response
+    );
+    return response.data;
+};
+
+export const getQuizResponseByQuizAndUser = async (quizId: any, userId: string) => {
+    const response = await axiosWithCredentials
+        .get(`${QUIZZES_API}/${quizId}/responses/${userId}`);
+    return response.data;
+};
