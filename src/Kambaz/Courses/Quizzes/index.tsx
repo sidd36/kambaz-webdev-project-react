@@ -1,4 +1,4 @@
-import { Button, Container, FormControl, FormGroup, InputGroup, ListGroup } from "react-bootstrap";
+import { Button, FormControl, FormGroup, InputGroup, ListGroup } from "react-bootstrap";
 import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { HiMagnifyingGlass } from "react-icons/hi2";
