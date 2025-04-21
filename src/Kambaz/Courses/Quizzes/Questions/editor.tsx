@@ -158,7 +158,7 @@ export default function QuestionEditor() {
               editorRef.current = editor;
               setEditorLoaded(true);
             }}
-            onEditorChange={(newValue: any, editor: any) => {
+            onEditorChange={(newValue: any, _editor: any) => {
               setQuestion({ ...edit_question, question: newValue });
             }}
             initialValue={!editorLoaded ? edit_question.question : undefined} // set only on first mount
