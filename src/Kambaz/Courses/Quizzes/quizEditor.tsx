@@ -172,6 +172,23 @@ export default function QuizEditor() {
                             </Col>
                         </Row>
 
+                        {
+                            quiz.multipleAttempts &&
+                            <Row className="mb-3 align-items-center">
+                                <Col xs={4} className="text-end">
+                                    <FormLabel className="mb-0">No. of attempts</FormLabel>
+                                </Col>
+                                <Col xs={8}>
+                                    <FormControl
+                                        type="number"
+                                        value={quiz.noOfAttempts}
+                                        onChange={(e) => setQuiz({ ...quiz, noOfAttempts: e.target.value })}
+                                        style={{ maxWidth: "100px" }}
+                                    />
+                                </Col>
+                            </Row>
+                        }
+
                         <Row className="mb-3 align-items-center">
                             <Col xs={4} className="text-end">
                                 <FormLabel className="mb-0">Show Correct Answers</FormLabel>
