@@ -15,12 +15,15 @@ import QuestionEditor from "./Quizzes/Questions/editor";
 import QuizEditor from "./Quizzes/quizEditor";
 import QuizAnswers from "./Quizzes/QuizAnswers";
 import QuizResponses from "./Quizzes/QuizResponses";
+import * as userClient from "../Account/client";
+import { useSelector } from "react-redux";
 
-export default function Courses({ courses }: { courses: any[]; }) {
+export default function Courses({ co }: { co: any[]; }) {
   const { pathname } = useLocation();
   const { cid } = useParams();
+  const { courses } = useSelector((state: any) => state.coursesReducer);
   const [users, setUsers] = useState<any[]>([]);
-  const course = courses.find((course) => course._id === cid);
+  const course = courses.find((course: { _id: string | undefined; }) => course._id === cid);
   const getCourseUsers = async (courseId: string) => {
     const users = await findUsersForCourse(courseId);
     setUsers([...users]);

@@ -12,6 +12,7 @@ import { enroll } from "./Dashboard/reducer";
 import Session from "./Account/Session";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
+import { setC } from "./Courses/reducer";
 
 export default function Kambaz() {
   const [allCourses, setAllCourses] = useState<any[]>([]);
@@ -22,6 +23,7 @@ export default function Kambaz() {
       const allCourses = await courseClient.fetchAllCourses();
       const courses = await userClient.findMyCourses();
       setCourses(courses);
+      dispatch(setC(courses))
       setAllCourses(allCourses);
     } catch (error) {
       console.error(error);
@@ -39,17 +41,21 @@ export default function Kambaz() {
   const addNewCourse = async () => {
     const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse ]);
+    dispatch(setC([...courses, newCourse ]))
     dispatch(enroll({ _id: uuidv4(), user: currentUser._id, course: newCourse._id }));
   };
   const addCourse = (newCourse: any) => {
     setCourses([...courses, newCourse ]);
+    dispatch(setC([...courses, newCourse ]))
   }
   const removeCourse = (courseId: any) => {
     setCourses(courses.filter((course) => course._id !== courseId));
+    dispatch(setC(courses.filter((c) => c._id !== courseId))); 
   }
   const deleteCourse = async (courseId: any) => {
     await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
+    dispatch(setC(courses.filter((c) => c._id !== courseId)));
   };
   const updateCourse = async () => {
     await courseClient.updateCourse(course);
@@ -62,6 +68,12 @@ export default function Kambaz() {
         }
       })
     );
+
+    dispatch(setC(courses.map((c) => {
+      if (c._id === course._id) { return course; }
+      else { return c; }
+    })));
+
   };
 
   return (
@@ -82,7 +94,7 @@ export default function Kambaz() {
               updateCourse={updateCourse}
               addCourse={addCourse}
               removeCourse={removeCourse} /></ProtectedRoute>} />
-            <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /></ProtectedRoute>} />
+            <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses co={courses} /></ProtectedRoute>} />
             <Route path="/Calendar" element={<h1>Calendar</h1>} />
             <Route path="/Inbox" element={<h1>Inbox</h1>} />
           </Routes>
