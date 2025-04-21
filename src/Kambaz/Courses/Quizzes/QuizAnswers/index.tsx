@@ -95,7 +95,7 @@ export default function QuizAnswers() {
       className="mb-3 border-bottom"
       variant="tabs"
     >
-      {attempts < quiz?.noOfAttempts && (
+      {((attempts < quiz?.noOfAttempts) || currentUser.role === "FACULTY") &&  (
         <Tab
           eventKey="preview"
           title={
