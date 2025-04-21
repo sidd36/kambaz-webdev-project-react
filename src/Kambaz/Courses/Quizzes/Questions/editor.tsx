@@ -19,6 +19,8 @@ export default function QuestionEditor() {
 
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate()
+    const [editorLoaded, setEditorLoaded] = useState(false);
+
     useEffect(() => {
         if (tempQuestion != null) {
             setQuestion(tempQuestion);
@@ -151,22 +153,26 @@ export default function QuestionEditor() {
       <Form.Group className="mb-4">
         <Form.Label><h5>Question:</h5></Form.Label>
         <Editor
-          apiKey={import.meta.env.VITE_REACT_APP_TINYMCE_API_KEY}
-          onInit={(_evt: any, editor: any) => editorRef.current = editor}
-          onEditorChange={(newValue: any) => setQuestion({ ...edit_question, question: newValue })}
-          initialValue={edit_question.question?.replace(/dir="rtl"/g, '')}
-          init={{
-            height: 200,
-            menubar: false,
-            plugins: "lists link image preview",
-            content_style: "body { direction: ltr !important; text-align: left !important; }",
-            directionality: 'ltr',
-            toolbar:
-              "undo redo | formatselect | bold italic underline | \
-               alignleft aligncenter alignright alignjustify | \
-               bullist numlist outdent indent | removeformat | preview",
-          }}
-        />
+            apiKey={import.meta.env.VITE_REACT_APP_TINYMCE_API_KEY}
+            onInit={(_evt: any, editor: any) => {
+              editorRef.current = editor;
+              setEditorLoaded(true);
+            }}
+            onEditorChange={(newValue: any, editor: any) => {
+              setQuestion({ ...edit_question, question: newValue });
+            }}
+            initialValue={!editorLoaded ? edit_question.question : undefined} // set only on first mount
+            init={{
+              height: 200,
+              menubar: false,
+              directionality: "ltr",
+              plugins: "lists link image preview",
+              toolbar:
+                "undo redo | formatselect | bold italic underline | " +
+                "alignleft aligncenter alignright alignjustify | " +
+                "bullist numlist outdent indent | removeformat | preview",
+            }}
+          />
       </Form.Group>
 
       <Form.Label><h5>Answers:</h5></Form.Label>
