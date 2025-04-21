@@ -15,7 +15,7 @@ import QuestionEditor from "./Quizzes/Questions/editor";
 import QuizEditor from "./Quizzes/quizEditor";
 import QuizAnswers from "./Quizzes/QuizAnswers";
 import QuizResponses from "./Quizzes/QuizResponses";
-import * as userClient from "../Account/client";
+// import * as userClient from "../Account/client";
 import { useSelector } from "react-redux";
 
 export default function Courses({ co }: { co: any[]; }) {
@@ -28,6 +28,7 @@ export default function Courses({ co }: { co: any[]; }) {
     const users = await findUsersForCourse(courseId);
     setUsers([...users]);
   };
+  console.log(co)
   useEffect(() => {
     getCourseUsers(course._id);
   }, [course])
